@@ -30,5 +30,3 @@ For advanced users, `Guix <https://guix.gnu.org/>`_ package definitions are avai
 curl -o capytaine.scm https://raw.githubusercontent.com/capytaine/capytaine-extra-build-recipes/master/capytaine.scm
 guix shell -f capytaine.scm python -- python3 -c 'import capytaine; print(capytaine.__version__)'
 ```
-
-TODO: fix Guix recipe for newer versions of Capytaine
