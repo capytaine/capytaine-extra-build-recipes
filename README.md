@@ -27,6 +27,7 @@ Note that graphical displays (matplotlib, vtk, ...) might require a complex setu
 For advanced users, `Guix <https://guix.gnu.org/>`_ package definitions are available at the root of the repository:
 
 ```
-curl -o capytaine.scm https://raw.githubusercontent.com/capytaine/capytaine-extra-build-recipes/master/capytaine.scm
-guix shell -f capytaine.scm python -- python3 -c 'import capytaine; print(capytaine.__version__)'
+curl -o capytaine.scm https://raw.githubusercontent.com/capytaine/capytaine-extra-build-recipes/main/capytaine.scm
+guix shell -L . python python-capytaine@2.2.1 -- python3 -c 'import capytaine; print(capytaine.__version__)'
 ```
+Package definitions for all versions since 2.0 are available.
