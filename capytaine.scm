@@ -10,6 +10,7 @@
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system python)
   #:use-module (guix build-system pyproject)
+  #:use-module (gnu packages astronomy)
   #:use-module (gnu packages build-tools)
   #:use-module (gnu packages check)
   #:use-module (gnu packages commencement)
@@ -216,6 +217,33 @@
    (synopsis "A command line tool and a python package to manipulate hydrodynamics meshes ")
    (description "A command line tool and a python package to manipulate hydrodynamics meshes ")
    (license license:gpl3)))
+
+
+(define-public python-bemio
+ (package
+   (name "python-bemio")
+   (version "2023-08-01")
+   (source (origin
+     (method git-fetch)
+     (uri (git-reference
+            (url "https://github.com/mancellin/bemio")
+            (commit "fa3a6d3d4b0862491c3723919ec8ee45cc7d055a")))
+     (file-name (git-file-name name version))
+     (sha256 (base32 "0w3l26cm4ig0kgg8p2y31nj3sg23b7sd489na5ih3kim8wk1l9r4"))
+     ))
+   (build-system python-build-system)
+   (arguments 
+     `(#:tests? #f
+       #:phases
+       (modify-phases %standard-phases
+                      (delete 'sanity-check)
+       )))
+   (native-inputs (list python-toolchain python-pytest))
+   (propagated-inputs (list python-numpy python-scipy python-h5py python-progressbar2 python-astropy))
+   (home-page "https://github.com/mancellin/bemio")
+   (synopsis "Legacy Boundary Element Method I/O (bemio)")
+   (description "Legacy Boundary Element Method I/O (bemio)")
+   (license license:asl2.0)))
 
 
 (define-public nemoh
